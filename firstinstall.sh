@@ -14,7 +14,7 @@ echo -e '\033[0;32m##### Please make sure the system sees all GPUs... if it does
 printf "\033[0;32m VGA CARD \033[0m $(lspci -v | grep VGA)\n"
 sleep 20
 echo -e '\033[0;32mInstalling NVIDIA repo and drivers [v384]... and enable Xorg\033[0m'
-sudo apt-get purge nvidia-* -y && add-apt-repository ppa:graphics-drivers/ppa -y && sudo apt-get install nvidia-384 -y
+sudo apt-get purge nvidia-* -y && apt-get autoremove -y &&add-apt-repository ppa:graphics-drivers/ppa -y && sudo apt-get install nvidia-384 -y
 #sudo apt-get --purge remove xserver-xorg-video-nouveau
 #systemctl set-default multi-user.target
 #killall /usr/bin/X
