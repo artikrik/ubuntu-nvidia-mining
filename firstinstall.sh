@@ -12,7 +12,7 @@ sleep 2
 service lightdm stop
 echo -e '\033[0;32m##### Please make sure the system sees all GPUs... if it doesnt something is wrong with the build. Update the repository database and install any updates: sudo apt update && sudo apt upgrade... then restart\033[0m'
 printf "\033[0;32m VGA CARD \033[0m $(lspci -v | grep VGA)\n"
-sleep 2
+sleep 20
 echo -e '\033[0;32mInstalling NVIDIA repo and drivers [v384]... and enable Xorg\033[0m'
 sudo apt-get purge nvidia-* -y && add-apt-repository ppa:graphics-drivers/ppa -y && sudo apt-get install nvidia-384 -y
 #sudo apt-get --purge remove xserver-xorg-video-nouveau
@@ -20,7 +20,7 @@ sudo apt-get purge nvidia-* -y && add-apt-repository ppa:graphics-drivers/ppa -y
 #killall /usr/bin/X
 #service lightdm stop
 service lightdm start
-sleep 10
+sleep 90
 echo -e '\033[0;32m#### Select the Nvidia GPUs and enable them all for over-clocking\033[0m'
 sleep 2
 prime-select nvidia
