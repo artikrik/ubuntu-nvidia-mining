@@ -7,18 +7,20 @@ echo -e '\033[0;32m##### Installing updates and install soft...\033[0m'
 apt-get install -y git && apt-get install -y openssh-server && apt-get install -y screen && apt-get install -y htop
 echo -e '\033[0;32m##### Xorg server disabling for the next sessions... (to enable use command [systemctl set-default graphical.target])\033[0m'
 sleep 2
-systemctl set-default multi-user.target
-killall /usr/bin/X
+#systemctl set-default multi-user.target
+#killall /usr/bin/X
 service lightdm stop
 echo -e '\033[0;32m##### Please make sure the system sees all GPUs... if it doesnt something is wrong with the build. Update the repository database and install any updates: sudo apt update && sudo apt upgrade... then restart\033[0m'
 printf "\033[0;32m VGA CARD \033[0m $(lspci -v | grep VGA)\n"
 sleep 2
-echo -e '\033[0;32mInstalling NVIDIA repo and drivers [v384]... and disable Xorg again...\033[0m'
+echo -e '\033[0;32mInstalling NVIDIA repo and drivers [v384]... and enable Xorg\033[0m'
 sudo apt-get purge nvidia-* -y && add-apt-repository ppa:graphics-drivers/ppa -y && sudo apt-get install nvidia-384 -y
-sudo apt-get --purge remove xserver-xorg-video-nouveau
-systemctl set-default multi-user.target
-killall /usr/bin/X
-service lightdm stop
+#sudo apt-get --purge remove xserver-xorg-video-nouveau
+#systemctl set-default multi-user.target
+#killall /usr/bin/X
+#service lightdm stop
+service lightdm start
+sleep 10
 echo -e '\033[0;32m#### Select the Nvidia GPUs and enable them all for over-clocking\033[0m'
 sleep 2
 prime-select nvidia
