@@ -4,8 +4,8 @@ if [ "$(whoami)" != "root" ]; then
 	exit 1
 fi
 echo -e '\033[0;32m##### Installing updates and install soft...\033[0m'
-apt-get install -y git && apt-get install -y screen htop mc && apt-get clean -y && apt-get autoremove -y
-echo -e '\033[0;32m##### Xorg server disabling for the next sessions... (to enable use command [systemctl set-default graphical.target])\033[0m'
+apt-get install -y git && apt-get install -y screen htop mc && apt-get clean -y && apt-get autoremove -y && sudo apt update -y && sudo apt upgrade -y
+echo -e '\033[0;32m##### Xorg server disabling...\033[0m'
 sleep 2
 #systemctl set-default multi-user.target
 service lightdm stop
